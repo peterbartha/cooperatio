@@ -3,6 +3,12 @@ import { AddOperation, JsonOperation, ReplaceOperation } from './jsonOperation';
 
 export namespace JsonDifferences {
 
+  export function compare(tree1: any, tree2: any): JsonOperation[] {
+    let patches: JsonOperation[] = [];
+    generate(tree1, tree2, patches, '');
+    return patches;
+  }
+
   function generate(objA: any, objB: any, patches: JsonOperation[], path: string): void {
     if (objB === objA) {
       return;
@@ -20,7 +26,7 @@ export namespace JsonDifferences {
       const oldVal = objA[key];
       if (Object.prototype.hasOwnProperty.call(objB, key) && !(objB[key] === undefined && oldVal !== undefined && Array.isArray(objB) === false)) {
         const newVal = objB[key];
-        if (typeof oldVal == 'object' && oldVal != null && typeof newVal == 'object' && newVal != null) {
+        if (typeof oldVal === 'object' && oldVal != null && typeof newVal === 'object' && newVal != null) {
           generate(oldVal, newVal, patches, `${path}/${Utils.escapePathComponent(key)}`);
         }
         else {
@@ -42,7 +48,7 @@ export namespace JsonDifferences {
       }
     }
 
-    if (!deleted && newKeys.length == oldKeys.length) {
+    if (!deleted && newKeys.length === oldKeys.length) {
       return;
     }
 
@@ -57,12 +63,5 @@ export namespace JsonDifferences {
       }
     }
   }
-  /**
-   * Create an array of patches from the differences in two objects
-   */
-  export function compare(tree1: any, tree2: any): JsonOperation[] {
-    let patches: JsonOperation[] = [];
-    generate(tree1, tree2, patches, '');
-    return patches;
-  }
+
 }
