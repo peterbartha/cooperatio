@@ -161,7 +161,7 @@ describe('HistoryManager', () => {
     let operation: ExtendedPatch;
 
     for (let i = 0; i < 100; i++) {
-      operation = new ExtendedPatch(TestHelper.randomTextOperation(doc));
+      operation = new ExtendedPatch(TestHelper.randomTextPatch(doc));
       doc = operation.apply(doc);
       history.add(operation);
     }

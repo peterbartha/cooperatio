@@ -15,10 +15,10 @@ export namespace TestHelper {
   }
 
   export function randomText(length: number): string {
-    let text = "";
+    let text = '';
     for (let i = 0; i < length; i++) {
       if (Math.random() < 0.15) {
-        text += "\n";
+        text += '\n';
       } else {
         const char = randomInt(26) + 97;
         text += String.fromCharCode(char);
@@ -27,7 +27,7 @@ export namespace TestHelper {
     return text;
   }
 
-  export function randomTextOperation(doc: string): TextPatch {
+  export function randomTextPatch(doc: string): TextPatch {
     const operation = new TextPatch();
     let left;
 
