@@ -1,30 +1,30 @@
 import { expect } from 'chai';
 import 'mocha';
-import { TextPatch } from '../../../src/operations/text/textPatch';
-import { TestHelper } from '../../testHelper';
+import { TextPatch } from '../../../../src/operations/text/textPatch';
+import { TestHelper } from '../../../testHelper';
 
 describe('TextPatch', () => {
 
   it('should match text lengths after applying operations', () => {
-    const operation = new TextPatch();
-    expect(operation.baseLength).to.equal(0);
-    expect(operation.targetLength).to.equal(0);
+    const patch = new TextPatch();
+    expect(patch.baseLength).to.equal(0);
+    expect(patch.targetLength).to.equal(0);
 
-    operation.retain(5);
-    expect(operation.baseLength).to.equal(5);
-    expect(operation.targetLength).to.equal(5);
+    patch.retain(5);
+    expect(patch.baseLength).to.equal(5);
+    expect(patch.targetLength).to.equal(5);
 
-    operation.insert('abc');
-    expect(operation.baseLength).to.equal(5);
-    expect(operation.targetLength).to.equal(8);
+    patch.insert('abc');
+    expect(patch.baseLength).to.equal(5);
+    expect(patch.targetLength).to.equal(8);
 
-    operation.retain(2);
-    expect(operation.baseLength).to.equal(7);
-    expect(operation.targetLength).to.equal(10);
+    patch.retain(2);
+    expect(patch.baseLength).to.equal(7);
+    expect(patch.targetLength).to.equal(10);
 
-    operation.remove(2);
-    expect(operation.baseLength).to.equal(9);
-    expect(operation.targetLength).to.equal(10);
+    patch.remove(2);
+    expect(patch.baseLength).to.equal(9);
+    expect(patch.targetLength).to.equal(10);
   });
 
   it('should transform two random text operation', () => {

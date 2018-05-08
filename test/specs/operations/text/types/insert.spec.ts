@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import 'mocha';
-import { TestHelper } from '../../../testHelper';
-import { Insert } from '../../../../src/operations/text/types/insert';
-import { TextOperation } from '../../../../src/operations/text/textOperation';
+import { TestHelper } from '../../../../testHelper';
+import { Insert } from '../../../../../src/operations/text/types/insert';
+import { TextOperation } from '../../../../../src/operations/text/textOperation';
 
 
 describe('Insert operation', () => {

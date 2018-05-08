@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import 'mocha';
-import { Noop } from '../../../../src/operations/text/types/noop';
-import { Insert } from '../../../../src/operations/text/types/insert';
-import { Remove } from '../../../../src/operations/text/types/remove';
-import { TextOperation } from '../../../../src/operations/text/textOperation';
+import { Noop } from '../../../../../src/operations/text/types/noop';
+import { Insert } from '../../../../../src/operations/text/types/insert';
+import { Remove } from '../../../../../src/operations/text/types/remove';
+import { TextOperation } from '../../../../../src/operations/text/textOperation';
 
 describe('Noop operation', () => {
 
