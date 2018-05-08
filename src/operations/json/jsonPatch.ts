@@ -54,11 +54,13 @@ export class JsonPatch implements Patch<JsonOperation> {
   }
 
   public static transform(a: JsonPatch, b: JsonPatch): [JsonPatch, JsonPatch] {
-    let patchA = Utils.deepClone(a)!;
-    let patchB = Utils.deepClone(b)!;
+    const patchAOps = Utils.deepClone(a.operations);
+    const patchBOps = Utils.deepClone(b.operations);
+    const opsA = patchAOps ? patchAOps : [];
+    const opsB = patchBOps ? patchBOps : [];
 
-    const pairA = new JsonPatch(JsonPatch.compareOperations(patchA.operations, patchB.operations, OperationPair.A));
-    const pairB = new JsonPatch(JsonPatch.compareOperations(patchA.operations, patchB.operations, OperationPair.B));
+    const pairA = new JsonPatch(JsonPatch.compareOperations(opsA, opsB, OperationPair.A));
+    const pairB = new JsonPatch(JsonPatch.compareOperations(opsA, opsB, OperationPair.B));
 
     return [pairA, pairB];
   }
