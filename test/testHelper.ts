@@ -82,4 +82,8 @@ export namespace TestHelper {
     return randomRemoveOperation(doc);
   }
 
+  export function logObj(name, value): void {
+    console.log(`${name}: ${JSON.stringify(value)}`)
+  }
+
 }
