@@ -1,7 +1,7 @@
 import 'mocha';
 import {
-  AddOperation, CopyOperation, MoveOperation, RemoveOperation,
-  ReplaceOperation
+  AddOperation, CopyOperation, MoveOperation,
+  RemoveOperation, ReplaceOperation
 } from '../../../../src/operations/json/jsonOperation';
 import { TestHelper } from '../../../testHelper';
 
@@ -12,7 +12,7 @@ describe('JSON Array operation', () => {
       it('same path', () => {
         const opA: RemoveOperation[] = [{op: 'remove', path: '/0/0/0'}];
         const opB: RemoveOperation[] = [{op: 'remove', path: '/0/0/0'}];
-
+        TestHelper.transform(opA, opB, [[], []]);
         TestHelper.diamondCheck([ [ [ 2, 3 ] ] ], opA, opB, [ [ [ 3 ] ] ]);
       });
 

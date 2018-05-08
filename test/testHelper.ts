@@ -1,8 +1,13 @@
+import { expect } from 'chai';
+import 'mocha';
 import { TextPatch } from '../src/operations/text/textPatch';
 import { Insert } from '../src/operations/text/types/insert';
 import { Remove } from '../src/operations/text/types/remove';
 import { Noop } from '../src/operations/text/types/noop';
 import { TextOperation } from '../src/operations/text/textOperation';
+import { JsonPatch } from '../src/operations/json/jsonPatch';
+import { JsonOperation } from '../src/operations/json/jsonOperation';
+import { Utils } from '../src/utils/utils';
 
 export namespace TestHelper {
 
@@ -86,4 +91,37 @@ export namespace TestHelper {
     console.log(`${name}: ${JSON.stringify(value)}`)
   }
 
+
+  export function diamondCheck(snapshot: any, opA: JsonOperation[], opB: JsonOperation[], result: any, log = false): void {
+    const [primeA, primeB] = JsonPatch.transform(new JsonPatch(opA), new JsonPatch(opB));
+    if (log) {
+      TestHelper.logObj('opA', opA);
+      TestHelper.logObj('1st apply on A', new JsonPatch(opA).apply(Utils.deepClone(snapshot)));
+      TestHelper.logObj('primeB', primeB);
+    }
+    const updatedA = primeB.apply(new JsonPatch(opA).apply(Utils.deepClone(snapshot)));
+    if (log) {
+      TestHelper.logObj('A', updatedA);
+      console.log();
+      TestHelper.logObj('opB', opB);
+      TestHelper.logObj('1st apply on B', new JsonPatch(opB).apply(Utils.deepClone(snapshot)));
+      TestHelper.logObj('primeA', primeA);
+    }
+    const updatedB = primeA.apply(new JsonPatch(opB).apply(Utils.deepClone(snapshot)));
+    if (log) {
+      TestHelper.logObj('B', updatedB);
+      console.log();
+      TestHelper.logObj('snapshot', snapshot);
+      TestHelper.logObj('expected result', result);
+      TestHelper.logObj('-----> A result', updatedA);
+      TestHelper.logObj('-----> B result', updatedB);
+    }
+
+    expect(updatedA).to.deep.equal(updatedB);
+    expect(result).to.deep.equal(updatedA);
+  }
+
+  export function transform(opsA: JsonOperation[], opsB: JsonOperation[], [pairA, pairB]): void {
+    expect(JsonPatch.transform(new JsonPatch(opsA), new JsonPatch(opsB))).to.deep.equal([new JsonPatch(pairA), new JsonPatch(pairB)]);
+  }
 }
