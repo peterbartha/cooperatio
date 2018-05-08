@@ -4,7 +4,7 @@ import { Noop } from './types/noop';
 import { Remove } from './types/remove';
 import { TextOperation } from './textOperation';
 
-export namespace TextTransformer {
+export namespace TextTransformation {
 
   export function transformOperations(a: TextOperation, b: TextOperation): [TextOperation, TextOperation] {
     if (a instanceof Noop || b instanceof Noop) {
