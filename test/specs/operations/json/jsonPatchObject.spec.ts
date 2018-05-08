@@ -5,7 +5,7 @@ import {
 } from '../../../../src/operations/json/jsonOperation';
 import { TestHelper } from '../../../testHelper';
 
-describe('JSON Array operation', () => {
+describe('JSON Object operation', () => {
 
   describe('Arrays', () => {
     describe('remove vs. remove', () => {
