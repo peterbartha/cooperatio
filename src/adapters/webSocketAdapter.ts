@@ -3,7 +3,7 @@ import { TextSelection } from '../operations/selection/textSelection';
 import { PrimitiveTextOperation } from '../operations/text/textPatch';
 import { JsonOperation } from '../operations/json/jsonOperation';
 
-enum WebSocketMessageType {
+export enum WebSocketMessageType {
   SetName = 'set_name',
   Ack = 'ack',
   Operation = 'patch',
@@ -13,16 +13,16 @@ enum WebSocketMessageType {
   ClientLeft = 'client_left',
 }
 
-interface WebSocketSelectionMessage {
+export interface WebSocketSelectionMessage {
   selection: TextSelection | undefined | null;
 }
 
-interface WebSocketOperationMessage extends WebSocketSelectionMessage {
+export interface WebSocketOperationMessage extends WebSocketSelectionMessage {
   operation: PrimitiveTextOperation[];
   revision: number;
 }
 
-interface WebSocketJsonOperationMessage {
+export interface WebSocketJsonOperationMessage {
   operation: JsonOperation[];
   revision: number;
 }

@@ -1,4 +1,4 @@
-import { ExtendedPatch } from '../extendedOperation';
+import { ExtendedPatch } from '../extendedPatch';
 import { HistoryState } from './historyState';
 
 export class HistoryManager {

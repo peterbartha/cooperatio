@@ -14,11 +14,11 @@ class UnknownOperation implements TextOperation {
     this.doc = doc;
   }
 
-  public apply(document: string): never {
+  public apply(_document: string): never {
     throw new Error('apply method is unimplemented');
   }
 
-  public equals(other: TextOperation): never {
+  public equals(_other: TextOperation): never {
     throw new Error('equals method is unimplemented');
   }
 

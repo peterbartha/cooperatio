@@ -87,7 +87,7 @@ export namespace TestHelper {
     return randomRemoveOperation(doc);
   }
 
-  export function logObj(name, value): void {
+  export function logObj(name: string, value: any): void {
     console.log(`${name}: ${JSON.stringify(value)}`)
   }
 
@@ -121,7 +121,7 @@ export namespace TestHelper {
     expect(result).to.deep.equal(updatedA);
   }
 
-  export function transform(opsA: JsonOperation[], opsB: JsonOperation[], [pairA, pairB]): void {
+  export function transform(opsA: JsonOperation[], opsB: JsonOperation[], [pairA, pairB]: any): void {
     expect(JsonPatch.transform(new JsonPatch(opsA), new JsonPatch(opsB))).to.deep.equal([new JsonPatch(pairA), new JsonPatch(pairB)]);
   }
 }

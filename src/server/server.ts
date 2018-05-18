@@ -1,4 +1,4 @@
-import { ExtendedPatch } from '../operations/extendedOperation';
+import { ExtendedPatch } from '../operations/extendedPatch';
 
 export class Server {
   protected document: string;

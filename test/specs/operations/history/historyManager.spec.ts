@@ -1,16 +1,16 @@
 import { expect } from 'chai';
 import 'mocha';
 import { HistoryManager } from '../../../../src/operations/history/historyManager';
-import { ExtendedPatch } from '../../../../src/operations/extendedOperation';
+import { ExtendedPatch } from '../../../../src/operations/extendedPatch';
 import { TextPatch } from '../../../../src/operations/text/textPatch';
 import { Utils } from '../../../../src/utils/utils';
 import { TestHelper } from '../../../testHelper';
 
 class Editor {
-  public doc: string;
+  public doc: any;
   public history: HistoryManager;
-  public undo: () => void;
-  public redo: () => void;
+  public undo: () => void = () => {};
+  public redo: () => void = () => {};
 
   constructor(doc: string) {
     this.doc = doc;

@@ -1,5 +1,5 @@
 import { WebSocketAdapter } from '../adapters/webSocketAdapter';
-import { ExtendedPatch } from '../operations/extendedOperation';
+import { ExtendedPatch } from '../operations/extendedPatch';
 import { HistoryManager } from '../operations/history/historyManager';
 import { ClientSelectionMetaInfo } from '../operations/selection/clientSelectionMetaInfo';
 import { TextSelection } from '../operations/selection/textSelection';

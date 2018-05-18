@@ -1,6 +1,6 @@
 import * as WebSocket from 'ws';
 import { ClientInfo } from '../client/editorClient';
-import { ExtendedPatch } from '../operations/extendedOperation';
+import { ExtendedPatch } from '../operations/extendedPatch';
 import { TextSelection } from '../operations/selection/textSelection';
 import { Server } from './server';
 import { PrimitiveTextOperation, TextPatch } from '../operations/text/textPatch';
@@ -45,7 +45,7 @@ export class EditorWebSocketServer extends Server {
               console.log('User doesn\'t have the right to edit the document.');
               return;
             }
-            this.onOperation(socket, data.message.revision, data.message.patch, data.message.selection);
+            this.onOperation(socket, data.message.revision, data.message.operation, data.message.selection);
           });
           break;
 
@@ -124,7 +124,7 @@ export class EditorWebSocketServer extends Server {
     });
   }
 
-  /* private setName(socket: WebSocket, name: string): void {
+  private setName(socket: WebSocket, name: string): void {
     const clientId = this.getClientId(socket);
     if (!this.clients.has(clientId)) {
       const newClient: ClientInfo = {
@@ -142,7 +142,7 @@ export class EditorWebSocketServer extends Server {
         });
       }
     });
-  } */
+  }
 
   private getClient(clientId: string): ClientInfo {
     if (this.clients.has(clientId)) {
